@@ -148,24 +148,21 @@ while True:
             player_busts(player_hand,dealer_hand,player_chips)
             break;
 
+        if(player_hand.value<=21):
 
+            while(dealer_hand.value<player_hand.value):
+                hit(deck,dealer_hand)
 
-    if(player_hand.value<=21):
+            if(dealer_hand.value > 21):
+                dealer_busts(player_hand,dealer_hand,player_chips)
+            elif(dealer_hand.value > player_hand.value):
+                dealer_wins(player_hand,dealer_hand,player_chips)
+            elif(dealer_hand.value < player_hand.value):
+                player_wins(player_hand,dealer_hand,player_chips)
+            else:
+                push(player_hand,dealer_hand)
 
-        while(dealer_hand.value<player_hand.value):
-            hit(deck,dealer_hand)
-
-
-        if(dealer_hand.value > 21):
-            dealer_busts(player_hand,dealer_hand,player_chips)
-        elif(dealer_hand.value> player_hand.value):
-            dealer_wins(player_hand,dealer_hand,player_chips)
-        elif(dealer_hand.value < player_hand.value):
-            player_wins(player_hand,dealer_hand,player_chips)
-        else:
-            push(player_hand,dealer_hand)
-
-    new_game = input("Would you like to Play Another Hand ? y/n")
+    new_game = input("Would you like to Play Another Hand ? y/n : ")
 
     if(new_game[0].lower()=='y'):
         playing=True
